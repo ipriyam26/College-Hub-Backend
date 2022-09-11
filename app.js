@@ -12,7 +12,7 @@ const food = require("./db/food");
 const public = require("./db/public");
 const laundry = require("./db/laundry");
 const library = require("./db/library");
-const maintenance = require(".db/maintenance");
+const maintenance = require("./db/maintenance");
 
 const app = express();
 const port = 3000 || process.env.PORT;
@@ -109,10 +109,10 @@ app.delete("/laundry/library/issue/:id", library.issue.deleteIssue);
 
 // maintenance order
 
-app.get("/maintenance/order/:id", maintenance.order.getOrderById);
-app.post("/maintenance/order/", maintenance.order.createOrder);
-app.put("/maintenance/order/:id", library.issue.updateOrder);
-app.delete("/maintenance/:id", library.issue.deleteOrder);
+app.get("/maintenance/order/:id", maintenance.order.getMaintenanceById);
+app.post("/maintenance/order/", maintenance.order.createMaintenance);
+app.put("/maintenance/order/:id", maintenance.order.updateMaintenance);
+app.delete("/maintenance/:id", maintenance.order.deleteMaintenance);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

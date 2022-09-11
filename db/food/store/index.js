@@ -56,7 +56,7 @@ const updateStore = (request, response) => {
 };
 
 // delete
-const deleteFoodStore = (request, response) => {
+const deleteStore = (request, response) => {
   const id = parseInt(request.params.pool_id);
 
   pool.query("DELETE FROM food.store WHERE id = $1", [id], (error, results) => {
