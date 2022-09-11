@@ -40,6 +40,23 @@ const createHostle = (request, response) => {
 
 // update
 
+const updateHostle = (request, response) => {
+  const id = request.params.order_id;
+  const { item_count, t_shirt, shorts, cardigans, dress, others } =
+    request.body;
+
+  pool.query(
+    "UPDATE laundry.order SET item_count = $1, t_shirt = $2, shorts=$3, cardigans=$4, dress=$5, others=$6 WHERE order_id = $7",
+    [item_count, t_shirt, shorts, cardigans, dress, others, id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).send(`Order with id: ${id} updated successfully`);
+    }
+  );
+};
+
 // delete
 const deleteHostle = (request, response) => {
   const id = parseInt(request.params.id);

@@ -40,6 +40,22 @@ const createItem = (request, response) => {
 
 // update
 
+const updateItem = (request, response) => {
+  const id = parseInt(request.params.pool_id);
+  const { store_id, name, price, image, type } = request.body;
+
+  pool.query(
+    "UPDATE car_pooling.post SET store_id=$1, name=$2, price=$3, image=$4, type=$5 WHERE id = $6",
+    [store_id, name, price, image, type],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).send(`Car pool with id: ${id} updated successfully`);
+    }
+  );
+};
+
 // delete
 const deleteItem = (request, response) => {
   const id = parseInt(request.params.id);
